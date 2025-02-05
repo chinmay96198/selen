@@ -3,14 +3,16 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Birthday Card</title>
+    <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="card" id="card">
+    <div class="card">
       <div class="outside">
         <div class="front">
           <p>Happy Birthday</p>
@@ -21,13 +23,34 @@
             <div class="candle"></div>
           </div>
         </div>
-        <div class="back"></div>
+        <div class="back">
+          <div class="photo-frame">
+            <img src="./884D0D41-A294-4852-9923-3F51E3A315CE.JPG" alt="Birthday Photo" class="photo" />
+          </div>
+        </div>
       </div>
       <div class="inside">
-        <p>Wishing you a very happy birthday filled with love and laughter</p>
+        <p class="message">sana çok mutlu bir doğum günü diliyorum, hak ettiğin tüm mutluluklara sahip olabilirsin</p>
         <h1>&#127873;</h1>
+        <h1 class="cat-emoji">&#128570;</h1> <!-- Cute cat emoji -->
       </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Birthday Song -->
+    <audio id="birthdaySong" src="./happy-birthday-to-you-piano-version-13976.mp3"></audio>
+
+    <script>
+      // Play the birthday song when the card opens
+      const card = document.querySelector('.card');
+      const birthdaySong = document.getElementById('birthdaySong');
+
+      card.addEventListener('click', () => {
+        if (birthdaySong.paused) {
+          birthdaySong.play();
+        } else {
+          birthdaySong.pause();
+        }
+      });
+    </script>
   </body>
 </html>
