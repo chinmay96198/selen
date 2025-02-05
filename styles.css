@@ -4,20 +4,31 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 body {
-  background-color: #fdbf00;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background-color: skyblue;
 }
 
 .card {
-  width: 90vw;
-  max-width: 320px;
-  height: 220px;
-  position: relative;
+  width: 640px;
+  height: 400px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-perspective: 1200px;
   perspective: 1200px;
+  transition: 1s;
+}
+
+.card:hover {
+  transform: rotate(-5deg);
+}
+
+.card:hover .outside {
+  transform: rotateY(-130deg);
 }
 
 .outside,
@@ -25,24 +36,28 @@ body {
   height: 100%;
   width: 50%;
   position: absolute;
-  left: 50%;
+  left: 50.1%;
 }
 
 .inside {
   background: linear-gradient(to right, #e7e7e7, #ffffff 30%);
-  line-height: 1.5;
-  padding: 10px;
+  line-height: 3;
+  padding: 0 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end; /* Align items to the right */
+  left: 50%;
 }
 
 .outside {
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  z-index: 1;
   transform-origin: left;
-  transition: 1s;
+  transition: 2s;
+  cursor: pointer;
 }
 
 .front,
@@ -50,7 +65,9 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: rotateX(0deg);
 }
 
 .front {
@@ -65,104 +82,115 @@ body {
 .cake {
   width: 100%;
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
 }
 
 .top-layer,
 .middle-layer,
 .bottom-layer {
-  height: 40px;
-  width: 120px;
+  height: 80px;
+  width: 240px;
   background-repeat: repeat;
-  background-size: 30px 50px;
-  background-position: 14px 0;
+  background-size: 60px 100px;
+  background-position: 28px 0;
   background-image: linear-gradient(
-      transparent 25px,
-      #fedbab 25px,
-      #fedbab 30px,
-      transparent 30px
+      transparent 50px,
+      #fedbab 50px,
+      #fedbab 60px,
+      transparent 60px
     ),
-    radial-gradient(circle at 15px 3px, #994c10 15px, #fcbf29 16px);
-  border-radius: 5px 5px 0 0;
+    radial-gradient(circle at 30px 5px, #994c10 30px, #fcbf29 31px);
+  border-radius: 10px 10px 0 0;
   position: relative;
   margin: auto;
 }
 
 .middle-layer {
   transform: scale(0.85);
-  top: 3px;
+  top: 6px;
 }
 
 .top-layer {
   transform: scale(0.7);
-  top: 13px;
+  top: 26px;
 }
 
 .candle {
-  height: 20px;
-  width: 7px;
+  height: 45px;
+  width: 15px;
   background: repeating-linear-gradient(
     45deg,
     #fd3018 0,
-    #fd3018 3px,
-    #ffa89e 3px,
-    #ffa89e 6px
+    #fd3018 5px,
+    #ffa89e 5px,
+    #ffa89e 10px
   );
   position: absolute;
   margin: auto;
   left: 0;
   right: 0;
-  bottom: 100px;
+  bottom: 202px;
 }
 
 .candle:before {
   content: "";
   position: absolute;
-  height: 8px;
-  width: 8px;
+  height: 16px;
+  width: 16px;
   background-color: #ffa500;
   border-radius: 0 50% 50% 50%;
-  bottom: 24px;
+  bottom: 48px;
   transform: rotate(45deg);
   left: -1px;
 }
 
 .outside p {
-  font-size: 16px;
+  font-size: 23px;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 30px;
   text-align: center;
-  letter-spacing: 3px;
+  letter-spacing: 6px;
   color: #000046;
 }
 
 .inside h1 {
-  font-size: 60px;
-  line-height: 60px;
+  font-size: 80px;
+  line-height: 80px;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  .card {
-    width: 90vw;
-    max-width: 300px;
-    height: 200px;
-  }
+/* Add styles for the photo frame */
+.photo-frame {
+  width: 80%;
+  height: 70%;
+  margin: 50px auto;
+  padding: 10px;
+  background-color: #fff;
+  border: 10px solid #f4c2c2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .top-layer,
-  .middle-layer,
-  .bottom-layer {
-    height: 30px;
-    width: 100px;
-  }
+/* Add styles for the photo */
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .candle {
-    height: 18px;
-    width: 6px;
-    bottom: 90px;
-  }
+/* Align the message to the right */
+.inside .message {
+  text-align: right;
+  margin-right: 20px;
+  font-size: 18px;
+  color: #333;
+}
 
-  .inside h1 {
-    font-size: 50px;
-  }
+/* Style for the cat emoji */
+.cat-emoji {
+  font-size: 100px;
+  line-height: 100px;
+  text-align: right;
+  margin-right: 20px;
 }
